@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
     header: {
-        marginTop: 30,
+        marginTop: 35,
         display: 'flex',
         alignItems: 'center',
         height: 50,
