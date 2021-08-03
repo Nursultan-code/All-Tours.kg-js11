@@ -1,0 +1,60 @@
+{
+    "tours": [
+        {
+            "title": "",
+            "image": "",
+            "type": "",
+            "price": "",
+            "description": "",
+            "id": 1
+        },
+        {
+            "title": "",
+            "image": "",
+            "type": "",
+            "price": "",
+            "description": "",
+            "id": 2
+        },
+        {
+            "title": "",
+            "image": "",
+            "type": "",
+            "price": "",
+            "description": "",
+            "id": 3
+        },
+        {
+            "title": "",
+            "image": "",
+            "type": "",
+            "price": "",
+            "description": "",
+            "id": 4
+        },
+        {
+            "title": "",
+            "image": "",
+            "type": "",
+            "price": "",
+            "description": "",
+            "id": 5
+        },
+        {
+            "title": "",
+            "image": "",
+            "type": "",
+            "price": "",
+            "description": "",
+            "id": 6
+        },
+        {
+            "title": "",
+            "image": "",
+            "type": "",
+            "price": "",
+            "description": "",
+            "id": 7
+        }
+    ]
+}
