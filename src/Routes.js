@@ -2,24 +2,23 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Header/Navbar'
 import Body from './components/Body/Body';
-import Carusel from './components/Carusel/Carusel';
+import Add from './components/Admin/Add';
+import TourContextProvider from './components/Contexts/TourContext';
+
 
 
 const Routes = () => {
     return (
-        <BrowserRouter>
-            <Navbar />
-            <Body >
-                {/* <Carusel /> */}
-
-            </Body>
-
-
-
-            <Switch>
-                <Route />
-            </Switch>
-        </BrowserRouter>
+        <TourContextProvider>
+            <BrowserRouter>
+                <Navbar />
+                {/* <Body ></Body> */}
+                <Switch>
+                    <Route exact path="/" component={Body} />
+                    <Route exact path="/add" component={Add} />
+                </Switch>
+            </BrowserRouter>
+        </TourContextProvider>
     );
 };
 
