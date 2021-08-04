@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
     back: {
-        backgroundColor: 'gray'
+        backgroundColor: 'orange'
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -166,9 +166,11 @@ export default function Navbar() {
 
     return (
         <div className={classes.grow}>
-            <AppBar style={{
-                backgroundColor: "orange"
-            }} position="static">
+            <AppBar className={classes.back}
+                // style={{
+                //     backgroundColor: "orange"
+                // }} 
+                position="static">
                 <Toolbar>
                     <IconButton
                         edge="start"
