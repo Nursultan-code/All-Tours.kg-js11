@@ -18,6 +18,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 const useStyles = makeStyles((theme) => ({
     grow: {
         flexGrow: 1,
+        marginBottom: 20,
     },
     back: {
         backgroundColor: 'orange'
@@ -170,7 +171,7 @@ export default function Navbar() {
                 // style={{
                 //     backgroundColor: "orange"
                 // }} 
-                position="static">
+                position="fixed">
                 <Toolbar>
                     <IconButton
                         edge="start"
