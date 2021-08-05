@@ -7,14 +7,14 @@ import axios from 'axios';
 export const TourContext = React.createContext()
 
 const INIT_STATE = {
-    products: []
+    tours: []
 }
 
 const reducer = (state = INIT_STATE, action) => {
     switch (action.type) {
         case "GET_TOURS":
             return {
-                ...state, products: action.payload.data
+                ...state, tours: action.payload
             }
         default: return state
     }
@@ -24,7 +24,7 @@ const TourContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, INIT_STATE)
 
     const getTours = async () => {
-        let data = await axios(`${API}/products`)
+        let { data } = await axios(`${API}/tours`)
         dispatch({
             type: "GET_TOURS",
             payload: data

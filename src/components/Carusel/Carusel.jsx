@@ -80,7 +80,10 @@ function Carusel() {
     };
 
     return (
-        <div className={classes.root}>
+        <div
+            className={classes.root}
+            style={{ marginTop: "80px" }}
+        >
             <Paper square elevation={0} className={classes.header}>
                 <Typography>{tutorialSteps[activeStep].label}</Typography>
             </Paper>
@@ -116,7 +119,7 @@ function Carusel() {
                     </Button>
                 }
             />
-        </div>
+        </div >
     );
 }
 

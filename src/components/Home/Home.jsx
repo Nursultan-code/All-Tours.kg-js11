@@ -1,13 +1,14 @@
 import React from 'react';
 import Navbar from '../Header/Navbar';
 import Content from '../Content/Content';
+import { Grid } from '@material-ui/core';
 
 const Home = () => {
     return (
-        <div>
-            <Navbar />
+        <Grid>
+
             <Content />
-        </div>
+        </Grid>
     );
 };
 
