@@ -107,7 +107,7 @@ function Carusel() {
                 variant="text"
                 activeStep={activeStep}
                 nextButton={
-                    <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
+                    <Button size="small" onClick={handleNext} disabled={activeStep === 5}>
                         Next
                         {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
                     </Button>

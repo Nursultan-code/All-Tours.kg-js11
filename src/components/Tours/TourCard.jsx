@@ -17,6 +17,10 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { useContext } from 'react';
 import { TourContext } from '../Contexts/TourContext';
+import Edit from '../Admin/Edit';
+import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -41,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function TourCard({ item }) {
+export default function TourCard({ item, history }) {
     const classes = useStyles();
 
     // const [expanded, setExpanded] = React.useState(false);
@@ -50,7 +54,21 @@ export default function TourCard({ item }) {
     //     setExpanded(!expanded);
     // };
 
-    const { getTours } = useContext(TourContext)
+
+    let icons = (
+        <CardActions>
+            <Link to={`/edit/${item.id}`}>
+                <IconButton>
+                    <Button>Изменить</Button>
+                </IconButton>
+            </Link>
+            <IconButton onClick={() => deleteTour(item.id, history)}>
+                <DeleteIcon />
+            </IconButton>
+        </CardActions>
+    )
+
+    const { getTours, deleteTour } = useContext(TourContext)
 
     return (
         <Card className={classes.root}>
@@ -74,7 +92,7 @@ export default function TourCard({ item }) {
                 </Typography>
 
             </CardContent>
-
+            {icons}
         </Card >
     );
 }
