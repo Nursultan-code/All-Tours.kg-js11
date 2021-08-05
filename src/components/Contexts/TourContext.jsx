@@ -7,7 +7,8 @@ import axios from 'axios';
 export const TourContext = React.createContext()
 
 const INIT_STATE = {
-    tours: []
+    tours: [],
+    edit: {},
 }
 
 const reducer = (state = INIT_STATE, action) => {
@@ -16,6 +17,11 @@ const reducer = (state = INIT_STATE, action) => {
             return {
                 ...state, tours: action.payload
             }
+        case "GET_EDIT_TOUR":
+            return {
+                ...state, edit: action.payload
+            }
+
         default: return state
     }
 }
@@ -41,11 +47,40 @@ const TourContextProvider = ({ children }) => {
         }
     }
 
+    const editTour = async (id) => {
+        const { data } = await axios.get(`${API}/tours/${id}`)
+        dispatch({
+            type: "GET_EDIT_TOUR",
+            payload: data
+        })
+    }
+
+    const saveEditTour = async (editedTour) => {
+        try {
+            let res = await axios.patch(`${API}/tours/${editedTour.id}`, editedTour)
+            return res
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const deleteTour = async (id, history) => {
+        await axios.delete(`${API}/tours/${id}`)
+        getTours(history)
+    }
+
+
+
     return (
         <TourContext.Provider value={{
             tours: state.tours,
+            edit: state.edit,
             getTours,
-            addTour
+            addTour,
+            editTour,
+            saveEditTour,
+            deleteTour,
+
         }}>
             {children}
         </TourContext.Provider>
