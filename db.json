@@ -1,64 +1,4 @@
 {
-<<<<<<< HEAD
-    "tours": [
-        {
-            "title": "Иссык-Куль",
-            "image": "https://i.pinimg.com/originals/69/aa/d7/69aad7c8f38c7abbe6a3596a2a3aeb17.jpg",
-            "type": "Семейный отдых",
-            "price": "4500",
-            "description": "окунись в красоты Иссык-куля,все виды отдыха с красивыми видами",
-            "id": 1
-        },
-        {
-            "title": "Нарын",
-            "image": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Naryncountryside.jpg",
-            "type": "",
-            "price": "4500",
-            "description": "насладитесь прекрасными местами Нарына",
-            "id": 2
-        },
-        {
-            "title": "Ущелье Кегеты",
-            "image": "https://www.baibol.kg/img/attraction_gallery/152413859762383.jpg",
-            "type": "Походы-Хайкинг",
-            "price": "4500",
-            "description": "Кегеты красивое ущелье Кыргызстане. Оно находится примерно в 90 км от Бишкека, на северной стороне кыргызского хребта.",
-            "id": 3
-        },
-        {
-            "title": "",
-            "image": "",
-            "type": "",
-            "price": "",
-            "description": "",
-            "id": 4
-        },
-        {
-            "title": "",
-            "image": "",
-            "type": "",
-            "price": "",
-            "description": "",
-            "id": 5
-        },
-        {
-            "title": "",
-            "image": "",
-            "type": "",
-            "price": "",
-            "description": "",
-            "id": 6
-        },
-        {
-            "title": "",
-            "image": "",
-            "type": "",
-            "price": "",
-            "description": "",
-            "id": 7
-        }
-    ]
-=======
   "tours": [
     {
       "title": "природный парк Ала-Арча ",
@@ -93,5 +33,4 @@
       "id": 5
     }
   ]
->>>>>>> 5925b481afc1451b6eab61ecf445d8e6e6bbe223
 }
