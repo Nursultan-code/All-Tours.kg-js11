@@ -18,9 +18,10 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 const useStyles = makeStyles((theme) => ({
     grow: {
         flexGrow: 1,
+        marginBottom: 20,
     },
     back: {
-        backgroundColor: 'gray'
+        backgroundColor: 'orange'
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -166,9 +167,11 @@ export default function Navbar() {
 
     return (
         <div className={classes.grow}>
-            <AppBar style={{
-                backgroundColor: "orange"
-            }} position="static">
+            <AppBar className={classes.back}
+                // style={{
+                //     backgroundColor: "orange"
+                // }} 
+                position="fixed">
                 <Toolbar>
                     <IconButton
                         edge="start"

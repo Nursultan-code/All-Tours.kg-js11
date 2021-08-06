@@ -3,17 +3,28 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Carusel from '../Carusel/Carusel';
+import Video2 from '../video/video2.mp4'
+
+
 
 export default function Body() {
     return (
-        <React.Fragment>
-            <CssBaseline />
-            <Container maxWidth="md">
-                <Typography component="div" style={{ backgroundColor: 'rgb(254,235,160)', height: '100vh' }}>
+        <div>
 
-                    <Carusel />
-                </Typography>
-            </Container>
-        </React.Fragment>
+            <video className="videoTag" autoPlay loop muted
+                style={{
+                    width: 1000,
+                    height: 400,
+                }}
+            >
+                <source src={Video2} type="video/mp4" />
+            </video>
+
+            <Carusel />
+        </div>
+
+
+
+
     );
 }
