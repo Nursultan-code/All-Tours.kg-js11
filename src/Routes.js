@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Navbar from './components/Header/Navbar'
+import Navbar from './components/Header/Navbar';
 import Body from './components/Body/Body';
 import Add from './components/Admin/Add';
 import TourContextProvider from './components/Contexts/TourContext';

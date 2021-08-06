@@ -21,7 +21,10 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: 20,
     },
     back: {
-        backgroundColor: 'orange'
+        backgroundColor: 'rgba(52, 52, 52, 0.3)',
+        color: "black",
+        elevation: 0
+
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -238,3 +241,4 @@ export default function Navbar() {
         </div>
     );
 }
+
