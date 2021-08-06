@@ -12,7 +12,7 @@ const ToursList = () => {
     }, [])
     return (
         <>
-            <Grid container spacing={3} justify="space-evenly" style={{ marginTop: '0px' }}>
+            <Grid container spacing={3} justify="space-evenly" style={{ marginTop: '90px' }}>
                 {
                     tours ? (
                         tours.map((item, index) => (
