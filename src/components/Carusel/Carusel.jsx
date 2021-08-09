@@ -41,8 +41,9 @@ const tutorialSteps = [
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 1020,
+        // maxWidth: 1120,
         flexGrow: 1,
+
     },
     header: {
         marginTop: 35,
@@ -51,11 +52,12 @@ const useStyles = makeStyles((theme) => ({
         height: 50,
         paddingLeft: theme.spacing(4),
         backgroundColor: theme.palette.background.default,
+        color: 'white'
     },
     img: {
-        height: 450,
+        height: 350,
         display: 'block',
-        maxWidth: 1000,
+        maxWidth: 900,
         overflow: 'hidden',
         width: '100%',
     },
@@ -82,12 +84,22 @@ function Carusel() {
     return (
         <div
             className={classes.root}
-            style={{ marginTop: "80px" }}
+            style={{
+                marginTop: "-20px",
+
+
+            }}
         >
-            <Paper square elevation={0} className={classes.header}>
+            <Paper style={{
+                background: 'transparent',
+                backgroundColor: 'rgba(52, 52, 52, 0.3)',
+
+
+            }} square elevation={0} className={classes.header}>
                 <Typography>{tutorialSteps[activeStep].label}</Typography>
             </Paper>
             <AutoPlaySwipeableViews
+                controls={false}
                 axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
                 index={activeStep}
                 onChangeIndex={handleStepChange}
@@ -101,24 +113,13 @@ function Carusel() {
                     </div>
                 ))}
             </AutoPlaySwipeableViews>
-            <MobileStepper
+            {/* <MobileStepper
                 steps={maxSteps}
                 position="static"
                 variant="text"
                 activeStep={activeStep}
-                nextButton={
-                    <Button size="small" onClick={handleNext} disabled={activeStep === 5}>
-                        Next
-                        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-                    </Button>
-                }
-                backButton={
-                    <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-                        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-                        Back
-                    </Button>
-                }
-            />
+
+            /> */}
         </div >
     );
 }
