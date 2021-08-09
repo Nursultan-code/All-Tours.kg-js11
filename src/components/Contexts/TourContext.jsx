@@ -2,6 +2,7 @@ import React from 'react';
 import { useReducer } from 'react';
 import { API } from '../helpers/constants';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 
 export const TourContext = React.createContext()
@@ -29,8 +30,14 @@ const reducer = (state = INIT_STATE, action) => {
 const TourContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, INIT_STATE)
 
-    const getTours = async () => {
-        let { data } = await axios(`${API}/tours`)
+
+
+    const getTours = async (history) => {
+        const search = new URLSearchParams(history.location.search)
+        search.set('_limit', 6)
+        history.push(`${history.location.pathname}?${search.toString()}`)
+
+        let { data } = await axios(`${API}/tours${window.location.search}`)
         dispatch({
             type: "GET_TOURS",
             payload: data

@@ -6,6 +6,7 @@ import Add from './components/Admin/Add';
 import TourContextProvider from './components/Contexts/TourContext';
 import ToursList from './components/Tours/ToursList';
 import Edit from './components/Admin/Edit';
+import AdminPanell from './components/Admin/AdminPanell';
 
 
 
@@ -18,7 +19,7 @@ const Routes = () => {
                 <Switch>
                     <Route exact path="/" component={Body} />
                     <Route exact path="/list" component={ToursList} />
-                    <Route exact path="/add" component={Add} />
+                    <Route exact path="/admin" component={AdminPanell} />
                     <Route exact path="/edit/:id" component={Edit} />
                 </Switch>
             </BrowserRouter>
