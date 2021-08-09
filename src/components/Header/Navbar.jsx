@@ -14,6 +14,11 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
+import { useContext } from 'react';
+import { TourContext } from '../Contexts/TourContext';
+import BurgerMenu from './BurgerMenu';
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -22,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     },
     back: {
         backgroundColor: 'rgba(52, 52, 52, 0.3)',
-        color: "black",
+        color: "white",
         elevation: 0
 
     },
@@ -90,9 +95,30 @@ export default function Navbar() {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+    const history = useHistory()
+    const [searchVal, setSearchVal] = useState(getSearchval() || '')
+    const { getTours, } = useContext(TourContext)
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+
+    function getSearchval() {
+        const search = new URLSearchParams(history.location.search)
+        return search.get('q')
+    }
+
+
+    const handleValue = (e) => {
+        const search = new URLSearchParams(history.location.search)
+        search.set('q', e.target.value)
+        history.push(`${history.location.pathname}?${search.toString()}`)
+        setSearchVal(e.target.value)
+        getTours(history)
+
+    }
+
+
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -182,7 +208,8 @@ export default function Navbar() {
                         color="inherit"
                         aria-label="open drawer"
                     >
-                        <MenuIcon />
+                        {/* <MenuIcon /> */}
+                        <BurgerMenu />
                     </IconButton>
                     <Typography className={classes.title} variant="h6" noWrap>
                         All-Tours.kg
@@ -198,6 +225,8 @@ export default function Navbar() {
                                 input: classes.inputInput,
                             }}
                             inputProps={{ 'aria-label': 'search' }}
+                            value={searchVal}
+                            onChange={handleValue}
                         />
                     </div>
                     <div className={classes.grow} />
@@ -235,6 +264,7 @@ export default function Navbar() {
                         </IconButton>
                     </div>
                 </Toolbar>
+
             </AppBar>
             {renderMobileMenu}
             {renderMenu}

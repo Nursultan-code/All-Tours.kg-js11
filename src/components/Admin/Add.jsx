@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { IconButton, Paper, TextField, makeStyles, Button } from '@material-ui/core';
 import { TourContext } from '../Contexts/TourContext';
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -22,6 +23,7 @@ const useStyles = makeStyles(theme => ({
 
 const Add = () => {
     const classes = useStyles()
+    const history = useHistory()
     const [values, setValues] = useState({
         title: '',
         image: '',
@@ -42,6 +44,7 @@ const Add = () => {
     const handleSave = () => {
         if (!values.image) values.image = "https://lh6.googleusercontent.com/proxy/5YUVHiA1x4KXBMvcnQ_fNcsGFQig9vpKgEbH98vc3mIx6963Jawv4WtVMemvIEdCHGpo60iD8t0OfwnHu5wY5InXTyqTPZx4a77T7iIFnHti=w3840-h2160-p-k-no-nd-mv"
         addTour(values)
+        history.push('/list')
     }
 
 

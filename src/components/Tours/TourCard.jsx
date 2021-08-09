@@ -25,10 +25,14 @@ import DeleteIcon from '@material-ui/icons/Delete';
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 345,
+        marginTop: 20
     },
     media: {
         height: 0,
         paddingTop: '56.25%', // 16:9
+        width: '1000px',
+
+
     },
     expand: {
         transform: 'rotate(0deg)',
@@ -79,6 +83,7 @@ export default function TourCard({ item, history }) {
             <CardMedia
                 className={classes.media}
                 image={item.image}
+
                 title="Beautiful"
             />
             <CardContent>
