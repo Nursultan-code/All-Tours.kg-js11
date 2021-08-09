@@ -136,7 +136,7 @@ export default function Body() {
             <div className={classes.aboutContent}>
                 <div className={classes.leftContent}>
                     <div className={classes.titleAbout}>О нас</div>
-                    <div className={classes.textAbout}>Мы занимаемся походами по Кыргызстану <br /> С нами вы проведете свое время с комфортом <br /> Организовываем туры уже более 10 лет<br /> delectus cum necessitatibus ipsam repudiandae? Atque, fuga.</div>
+                    <div className={classes.textAbout}>Мы занимаемся походами по Кыргызстану <br /> С нами вы проведете свое время с комфортом <br /> Организовываем туры уже более 10 лет<br />Специализируемся в туризмах разной сложности на выбор</div>
                 </div>
                 <div className={classes.rightContent}>
                     <Carusel maxWidth="md" className={classes.content} />
