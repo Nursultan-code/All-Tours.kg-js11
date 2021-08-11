@@ -72,15 +72,17 @@ export default function Login() {
                         autoComplete="current-password"
                     />
 
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="grey"
-                        className={classes.submit}
-                    >
-                        Войти
-                    </Button>
+                    <Link to="Body">
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="grey"
+                            className={classes.submit}
+                        >
+                            Войти
+                        </Button></Link>
+
                     <Grid container>
                         <Grid item xs>
                             <Link href="#" variant="body2">

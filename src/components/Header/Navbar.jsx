@@ -19,6 +19,8 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import { TourContext } from '../Contexts/TourContext';
 import BurgerMenu from './BurgerMenu';
+import { Link } from 'react-router-dom';
+import { Button } from 'bootstrap';
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -148,8 +150,19 @@ export default function Navbar() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Войти</MenuItem>
-            <MenuItem onClick={handleMenuClose}>Зарегистрироваться</MenuItem>
+            <Link to="/login">
+
+                <MenuItem
+                    onClick={handleMenuClose}
+                >Войти</MenuItem>
+
+            </Link>
+
+            <Link to="/registration">
+                <MenuItem
+                    onClick={handleMenuClose}>Зарегистрироваться
+                </MenuItem>
+            </Link>
         </Menu>
     );
 
@@ -202,6 +215,7 @@ export default function Navbar() {
                 // }} 
                 position="fixed">
                 <Toolbar>
+
                     <IconButton
                         edge="start"
                         className={classes.menuButton}
@@ -210,10 +224,21 @@ export default function Navbar() {
                     >
                         {/* <MenuIcon /> */}
                         <BurgerMenu />
+
                     </IconButton>
-                    <Typography className={classes.title} variant="h6" noWrap>
+
+
+                    <Typography className={classes.title}
+                        variant="h6"
+                        noWrap
+                        color="inherit" >
                         All-Tours.kg
                     </Typography>
+
+
+
+
+
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
