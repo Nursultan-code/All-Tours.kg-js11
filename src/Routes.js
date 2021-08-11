@@ -7,6 +7,7 @@ import TourContextProvider from './components/Contexts/TourContext';
 import ToursList from './components/Tours/ToursList';
 import Edit from './components/Admin/Edit';
 import AdminPanell from './components/Admin/AdminPanell';
+import Cart from './components/Cart/Cart';
 
 
 
@@ -18,9 +19,11 @@ const Routes = () => {
                 {/* <Body ></Body> */}
                 <Switch>
                     <Route exact path="/" component={Body} />
+                    <Route exact path="/cart" component={Cart} />
                     <Route exact path="/list" component={ToursList} />
                     <Route exact path="/admin" component={AdminPanell} />
                     <Route exact path="/edit/:id" component={Edit} />
+
                 </Switch>
             </BrowserRouter>
         </TourContextProvider>

@@ -11,7 +11,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
-import { Link } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import { API } from '../helpers/constants';
 
 const useStyles = makeStyles({
@@ -50,22 +50,28 @@ export default function BurgerMenu() {
             onKeyDown={toggleDrawer(anchor, false)}
         >
             <List>
-                {['Туры', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                {/* {['Туры', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                     <ListItem button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ? <Link to={`${API}/list`}> <InboxIcon /></Link> : <MailIcon />}</ListItemIcon>
-                        <ListItemText primary={text} />
+                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                        <Link><ListItemText primary={text} /></Link>
+                    </ListItem>
+                ))}, */}
+                {['Туры'].map((text, index) => (
+                    <ListItem button key={text}>
+                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                        <Link to='/list'><ListItemText primary={text} /></Link>
                     </ListItem>
                 ))}
             </List>
             <Divider />
-            <List>
+            {/* <List>
                 {['All mail', 'Trash', 'Spam'].map((text, index) => (
                     <ListItem button key={text}>
                         <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                         <ListItemText primary={text} />
                     </ListItem>
                 ))}
-            </List>
+            </List> */}
         </div>
     );
 
