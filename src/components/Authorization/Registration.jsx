@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,7 +12,8 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-
+import { useHistory } from 'react-router-dom';
+import { authContext } from '../Contexts/AuthContextProvider';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -47,7 +48,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Registration() {
+    const history = useHistory()
     const classes = useStyles();
+
+    const { registerUser } = useContext(authContext);
 
     return (
         <Grid container component="main" className={classes.root}>
@@ -61,7 +65,7 @@ export default function Registration() {
                     <Typography component="h1" variant="h5">
                         Регистрация
                     </Typography>
-                    <form className={classes.form} noValidate>
+                    <form onSubmit={(e) => registerUser(e, history)} className={classes.form} noValidate>
                         <TextField
                             variant="outlined"
                             margin="normal"
