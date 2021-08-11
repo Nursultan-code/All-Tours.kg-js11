@@ -19,6 +19,8 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import { TourContext } from '../Contexts/TourContext';
 import BurgerMenu from './BurgerMenu';
+import { Link } from 'react-router-dom';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -97,7 +99,7 @@ export default function Navbar() {
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
     const history = useHistory()
     const [searchVal, setSearchVal] = useState(getSearchval() || '')
-    const { getTours, } = useContext(TourContext)
+    const { getTours, cartLength, getCartLength } = useContext(TourContext)
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -211,9 +213,15 @@ export default function Navbar() {
                         {/* <MenuIcon /> */}
                         <BurgerMenu />
                     </IconButton>
-                    <Typography className={classes.title} variant="h6" noWrap>
-                        All-Tours.kg
-                    </Typography>
+                    <Link to={'/'} style={{
+                        color: 'white',
+                        textDecoration: 'none'
+                    }}>
+                        <Typography className={classes.title} variant="h6" noWrap>
+                            All-Tours.kg
+                        </Typography>
+                    </Link>
+
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
@@ -229,6 +237,15 @@ export default function Navbar() {
                             onChange={handleValue}
                         />
                     </div>
+                    <Link to="/cart" style={{ color: "white" }}>
+                        <IconButton>
+                            <Badge badgeContent={cartLength} color="secondary">
+                                <ShoppingCartIcon style={{ color: "white" }} />
+
+                            </Badge>
+                        </IconButton>
+
+                    </Link>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
                         <IconButton aria-label="show 4 new mails" color="inherit">
@@ -268,7 +285,7 @@ export default function Navbar() {
             </AppBar>
             {renderMobileMenu}
             {renderMenu}
-        </div>
+        </div >
     );
 }
 

@@ -3,31 +3,42 @@ import { useReducer } from 'react';
 import { API } from '../helpers/constants';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { calcSubPrice, calcTotalPrice } from '../helpers/CartFuction';
 
 
 export const TourContext = React.createContext()
 
 const INIT_STATE = {
     tours: [],
-    edit: {},
+    edit: null,
+    paginatedPages: 1,
+    cart: {},
+    cartLength: 0
 }
 
 const reducer = (state = INIT_STATE, action) => {
     switch (action.type) {
         case "GET_TOURS":
             return {
-                ...state, tours: action.payload
+                ...state, tours: action.payload.data,
+                paginatedPages: Math.ceil(action.payload.headers["x-total-count"] / 6)
             }
         case "GET_EDIT_TOUR":
             return {
                 ...state, edit: action.payload
             }
+        case "CHANGE_CART_COUNT":
+            return { ...state, cartLength: action.payload }
+        case "GET_CART":
+            return { ...state, cart: action.payload }
+
 
         default: return state
     }
 }
 
 const TourContextProvider = ({ children }) => {
+    const history = useHistory()
     const [state, dispatch] = useReducer(reducer, INIT_STATE)
 
 
@@ -37,7 +48,7 @@ const TourContextProvider = ({ children }) => {
         search.set('_limit', 6)
         history.push(`${history.location.pathname}?${search.toString()}`)
 
-        let { data } = await axios(`${API}/tours${window.location.search}`)
+        let data = await axios(`${API}/tours${window.location.search}`)
         dispatch({
             type: "GET_TOURS",
             payload: data
@@ -50,6 +61,7 @@ const TourContextProvider = ({ children }) => {
             return res
         }
         catch (err) {
+            console.log(err);
             return err
         }
     }
@@ -76,17 +88,111 @@ const TourContextProvider = ({ children }) => {
         getTours(history)
     }
 
+    const addTourInCart = (tour) => {
+        let cart = JSON.parse(localStorage.getItem('cart'))
+        if (!cart) {
+            cart = {
+                tours: [],
+                totalPrice: 0
+
+            }
+        }
+
+        let newTour = {
+            item: tour,
+            count: 1,
+            subPrice: 0
+        }
+        let filteredCart = cart.tours.filter(elem => elem.item.id === tour.id)
+        if (filteredCart.length > 0) {
+            cart.tours = cart.tours.filter(elem => elem.item.id !== tour.id)
+        } else {
+            cart.tours.push(newTour)
+        }
+        newTour.subPrice = calcSubPrice(newTour)
+        cart.totalPrice = calcTotalPrice(cart.tours)
+        localStorage.setItem('cart', JSON.stringify(cart))
+        dispatch({
+            type: "CHANGE_CART_COUNT",
+            payload: cart.tours.length
+
+        })
+    }
+    const getCartLength = () => {
+        let cart = JSON.parse(localStorage.getItem('cart'))
+        if (!cart) {
+            cart = {
+                tours: [],
+                totalPrice: 0
+            }
+        }
+        dispatch({
+            type: "CHANGE_CART_COUNT",
+            payload: cart.tours.length
+        })
+
+    }
+    const getCart = () => {
+        let cart = JSON.parse(localStorage.getItem('cart'))
+        if (!cart) {
+            cart = {
+                tours: [],
+                totalPrice: 0
+            }
+        }
+        dispatch({
+            type: "GET_CART",
+            payload: cart
+        })
+    }
+
+    const changeTourCount = (count, id) => {
+        let cart = JSON.parse(localStorage.getItem('cart'))
+        cart.tours = cart.tours.map(elem => {
+            if (elem.item.id === id) {
+                elem.count = count
+                elem.subPrice = calcSubPrice(elem)
+            }
+            return elem
+        })
+        cart.totalPrice = calcTotalPrice(cart.tours)
+        localStorage.setItem('cart', JSON.stringify(cart))
+        getCart()
+    }
+    const checkTourInCart = (id) => {
+        let cart = JSON.parse(localStorage.getItem('cart'))
+        if (!cart) {
+            cart = {
+                tours: [],
+                totalPrice: 0
+            }
+        }
+        let newCart = cart.tours.filter(elem => elem.item.id === id)
+        return newCart.length > 0 ? true : false
+    }
+
+
+
 
 
     return (
         <TourContext.Provider value={{
             tours: state.tours,
             edit: state.edit,
+            paginatedPages: state.paginatedPages,
+            cart: state.cart,
+            cartLength: state.cartLength,
             getTours,
             addTour,
             editTour,
             saveEditTour,
             deleteTour,
+            getCart,
+            addTourInCart,
+            changeTourCount,
+            checkTourInCart,
+            getCartLength
+
 
         }}>
             {children}

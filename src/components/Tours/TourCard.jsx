@@ -19,18 +19,21 @@ import { useContext } from 'react';
 import { TourContext } from '../Contexts/TourContext';
 import Edit from '../Admin/Edit';
 import { Button } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import DeleteIcon from '@material-ui/icons/Delete';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 345,
-        marginTop: 20
+        maxWidth: 600,
+        marginTop: 20,
+        width: '400px',
+        height: '600px'
     },
     media: {
         height: 0,
         paddingTop: '56.25%', // 16:9
-        width: '1000px',
+        width: '400px',
 
 
     },
@@ -49,16 +52,17 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function TourCard({ item, history }) {
+export default function TourCard({ item }) {
     const classes = useStyles();
 
+    const { getTours, deleteTour, addTourInCart, checkTourInCart } = useContext(TourContext)
     // const [expanded, setExpanded] = React.useState(false);
 
     // const handleExpandClick = () => {
     //     setExpanded(!expanded);
     // };
 
-
+    let history = useHistory()
     let icons = (
         <CardActions>
             <Link to={`/edit/${item.id}`}>
@@ -69,10 +73,16 @@ export default function TourCard({ item, history }) {
             <IconButton onClick={() => deleteTour(item.id, history)}>
                 <DeleteIcon />
             </IconButton>
+            <IconButton
+                aria-label='share'
+                onClick={() => addTourInCart(item)}
+                color={checkTourInCart(item.id) ? "secondary" : "inherit"}
+            >
+                <ShoppingCartIcon />
+            </IconButton>
         </CardActions>
     )
 
-    const { getTours, deleteTour } = useContext(TourContext)
 
     return (
         <Card className={classes.root}>

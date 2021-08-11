@@ -29,23 +29,23 @@
 //     },
 // }));
 
-// /**
-//  * The example data is structured as follows:
-//  *
-//  * import image from 'path/to/image.jpg';
-//  * [etc...]
-//  *
-//  * const itemData = [
-//  *   {
-//  *     img: image,
-//  *     title: 'Image',
-//  *     author: 'author',
-//  *   },
-//  *   {
-//  *     [etc...]
-//  *   },
-//  * ];
-//  */
+
+//  The example data is structured as follows:
+
+//  import image from 'path/to/image.jpg';
+//  [etc...]
+
+//  const itemData = [
+//    {
+//      img: '',
+//      title: 'Image',
+//      author: 'author',
+//    },
+//    {
+
+//    },
+//   ];
+
 // export default function toursCarusel() {
 //     const classes = useStyles();
 
