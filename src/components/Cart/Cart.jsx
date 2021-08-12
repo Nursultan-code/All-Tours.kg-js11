@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core';
+import { IconButton, makeStyles } from '@material-ui/core';
 import React from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react';
@@ -11,24 +11,28 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Button, Typography } from '@material-ui/core';
-
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import { calcTotalPrice } from '../helpers/CartFuction'
 import { TourContext } from '../Contexts/TourContext';
+import { Link, useHistory } from 'react-router-dom';
+import Card from '../CreditCard/Card';
 
 const useStyles = makeStyles({
     table: {
         minWidth: 700,
     },
     paper: {
+        marginTop: '100px',
         maxWidth: 1000,
         margin: '40px auto'
     }
 });
 
-const Cart = () => {
+const Cart = ({ item }) => {
     const classes = useStyles()
-    const { cart, getCart, changeTourCount } = useContext(TourContext)
+    const { cart, getCart, changeTourCount, deleteCart } = useContext(TourContext)
+    const history = useHistory()
 
     useEffect(() => {
         getCart()
@@ -50,7 +54,7 @@ const Cart = () => {
                         <>
                             {cart.tours.map((elem) => (
                                 <TableRow key={elem.item.id}>
-                                    <TableCell><img style={{ width: "50px" }} src={elem.item.images} alt={elem.item.title} /></TableCell>
+                                    <TableCell><img style={{ width: "200px" }} src={elem.item.image} alt={elem.item.title} /></TableCell>
                                     <TableCell align="right">{elem.item.title}</TableCell>
                                     <TableCell align="right">{elem.item.price}</TableCell>
                                     <TableCell align="right">
@@ -61,6 +65,9 @@ const Cart = () => {
                                         />
                                     </TableCell>
                                     <TableCell align="right">{elem.subPrice}</TableCell>
+                                    <IconButton onClick={() => deleteCart(elem.item.id, history)}>
+                                        <DeleteIcon />
+                                    </IconButton>
                                 </TableRow>
                             ))}
                         </>
@@ -76,9 +83,10 @@ const Cart = () => {
                         }
                     </TableRow>
                     <TableRow >
-                        <TableCell colSpan={3} align="right">
-                            <Button variant="contained" color="primary">BUY</Button>
-                        </TableCell>
+                        <Link to='/card'>
+                            <TableCell colSpan={3} align="right">
+                                <Button variant="contained" color="primary">BUY</Button>
+                            </TableCell></Link>
                     </TableRow>
                 </TableBody>
             </Table>

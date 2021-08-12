@@ -4,29 +4,47 @@ import Navbar from './components/Header/Navbar';
 import Body from './components/Body/Body';
 import Add from './components/Admin/Add';
 import TourContextProvider from './components/Contexts/TourContext';
-import ToursList from './components/Tours/ToursList';
+
 import Edit from './components/Admin/Edit';
 import AdminPanell from './components/Admin/AdminPanell';
 import Cart from './components/Cart/Cart';
+import Login from './components/Authorization/Login';
+import Registration from './components/Authorization/Registration';
+import AuthContextProvider from './components/Contexts/AuthContextProvider';
+import Card from './components/CreditCard/Card'
+import TourDetail from './components/Tours/TourDetail';
+import TourList2 from './components/TourList2/TourList2';
+
+
 
 
 
 const Routes = () => {
     return (
-        <TourContextProvider>
-            <BrowserRouter>
-                <Navbar />
-                {/* <Body ></Body> */}
-                <Switch>
-                    <Route exact path="/" component={Body} />
-                    <Route exact path="/cart" component={Cart} />
-                    <Route exact path="/list" component={ToursList} />
-                    <Route exact path="/admin" component={AdminPanell} />
-                    <Route exact path="/edit/:id" component={Edit} />
 
-                </Switch>
-            </BrowserRouter>
-        </TourContextProvider>
+        <AuthContextProvider>
+            <TourContextProvider>
+                <BrowserRouter>
+                    <Navbar />
+                    {/* <Body ></Body> */}
+                    <Switch>
+                        <Route exact path="/" component={Body} />
+                        <Route exact path="/cart" component={Cart} />
+                        <Route exact path="/list" component={TourList2} />
+                        <Route exact path="/admin" component={AdminPanell} />
+                        <Route exact path="/edit/:id" component={Edit} />
+
+                        <Route exact path="/login" component={Login} />
+                        <Route exact path="/registration" component={Registration} />
+
+                        <Route exact path='/card' component={Card} />
+
+                        <Route exact path='/detail/:id' component={TourDetail} />
+                    </Switch>
+                </BrowserRouter>
+            </TourContextProvider>
+
+        </AuthContextProvider>
     );
 };
 

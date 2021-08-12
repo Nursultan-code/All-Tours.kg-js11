@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         // maxWidth: 1120,
         flexGrow: 1,
-
+        width: '100vw'
     },
     header: {
         marginTop: 35,
@@ -52,14 +52,15 @@ const useStyles = makeStyles((theme) => ({
         height: 50,
         paddingLeft: theme.spacing(4),
         backgroundColor: theme.palette.background.default,
-        color: 'white'
+        color: 'white',
+        textAlign: 'center'
     },
     img: {
-        height: 350,
+        height: 600,
         display: 'block',
-        maxWidth: 900,
+        // maxWidth: '100vw',
         overflow: 'hidden',
-        width: '100%',
+        width: '100vw',
     },
 }));
 
