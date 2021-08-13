@@ -11,7 +11,8 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.text.secondary,
         margin: '40px auto',
         maxWidth: 1000,
-        height: 'auto'
+        height: 'auto',
+        marginTop: '100px'
     },
     root: {
         '& .MuiTextField-root': {

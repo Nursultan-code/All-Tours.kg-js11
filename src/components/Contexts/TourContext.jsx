@@ -13,7 +13,8 @@ const INIT_STATE = {
     edit: null,
     paginatedPages: 1,
     cart: {},
-    cartLength: 0
+    cartLength: 0,
+    detail: {}
 }
 
 const reducer = (state = INIT_STATE, action) => {
@@ -27,6 +28,8 @@ const reducer = (state = INIT_STATE, action) => {
             return {
                 ...state, edit: action.payload
             }
+        case "GET_DETAIL_TOUR":
+            return { ...state, detail: action.payload }
         case "CHANGE_CART_COUNT":
             return { ...state, cartLength: action.payload }
         case "GET_CART":
@@ -85,6 +88,11 @@ const TourContextProvider = ({ children }) => {
 
     const deleteTour = async (id, history) => {
         await axios.delete(`${API}/tours/${id}`)
+        getTours(history)
+    }
+
+    const deleteCart = async (id, history) => {
+        await axios.delete(`${API}/cart/${id}`)
         getTours(history)
     }
 
@@ -171,6 +179,14 @@ const TourContextProvider = ({ children }) => {
         return newCart.length > 0 ? true : false
     }
 
+    const getDetail = async (id) => {
+        const { data } = await axios.get(`${API}/tours/${id}`)
+        dispatch({
+            type: "GET_DETAIL_TOUR",
+            payload: data
+        })
+    }
+
 
 
 
@@ -182,6 +198,7 @@ const TourContextProvider = ({ children }) => {
             paginatedPages: state.paginatedPages,
             cart: state.cart,
             cartLength: state.cartLength,
+            detail: state.detail,
             getTours,
             addTour,
             editTour,
@@ -191,7 +208,9 @@ const TourContextProvider = ({ children }) => {
             addTourInCart,
             changeTourCount,
             checkTourInCart,
-            getCartLength
+            getCartLength,
+            deleteCart,
+            getDetail,
 
 
         }}>

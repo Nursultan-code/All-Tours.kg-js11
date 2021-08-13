@@ -21,6 +21,7 @@ import { TourContext } from '../Contexts/TourContext';
 import BurgerMenu from './BurgerMenu';
 import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { Grid } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -150,8 +151,19 @@ export default function Navbar() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <Link to="/login">
+
+                <MenuItem
+                    onClick={handleMenuClose}
+                >Войти</MenuItem>
+
+            </Link>
+
+            <Link to="/registration">
+                <MenuItem
+                    onClick={handleMenuClose}>Зарегистрироваться
+                </MenuItem>
+            </Link>
         </Menu>
     );
 
@@ -197,95 +209,97 @@ export default function Navbar() {
     );
 
     return (
-        <div className={classes.grow}>
-            <AppBar className={classes.back}
-                // style={{
-                //     backgroundColor: "orange"
-                // }} 
-                position="fixed">
-                <Toolbar>
-                    <IconButton
-                        edge="start"
-                        className={classes.menuButton}
-                        color="inherit"
-                        aria-label="open drawer"
-                    >
-                        {/* <MenuIcon /> */}
-                        <BurgerMenu />
-                    </IconButton>
-                    <Link to={'/'} style={{
-                        color: 'white',
-                        textDecoration: 'none'
-                    }}>
-                        <Typography className={classes.title} variant="h6" noWrap>
-                            All-Tours.kg
-                        </Typography>
-                    </Link>
+        <Grid>
+            <div className={classes.grow}>
+                <AppBar className={classes.back}
+                    // style={{
+                    //     backgroundColor: "orange"
+                    // }}   
+                    position="fixed">
+                    <Toolbar>
+                        <IconButton
+                            edge="start"
+                            className={classes.menuButton}
+                            color="inherit"
+                            aria-label="open drawer"
+                        >
+                            {/* <MenuIcon /> */}
+                            <BurgerMenu />
+                        </IconButton>
+                        <Link to={'/'} style={{
+                            color: 'white',
+                            textDecoration: 'none'
+                        }}>
+                            <Typography className={classes.title} variant="h6" noWrap>
+                                All-Tours.kg
+                            </Typography>
+                        </Link>
 
-                    <div className={classes.search}>
-                        <div className={classes.searchIcon}>
-                            <SearchIcon />
+                        <div className={classes.search}>
+                            <div className={classes.searchIcon}>
+                                <SearchIcon />
+                            </div>
+                            <InputBase
+                                placeholder="Search…"
+                                classes={{
+                                    root: classes.inputRoot,
+                                    input: classes.inputInput,
+                                }}
+                                inputProps={{ 'aria-label': 'search' }}
+                                value={searchVal}
+                                onChange={handleValue}
+                            />
                         </div>
-                        <InputBase
-                            placeholder="Search…"
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput,
-                            }}
-                            inputProps={{ 'aria-label': 'search' }}
-                            value={searchVal}
-                            onChange={handleValue}
-                        />
-                    </div>
-                    <Link to="/cart" style={{ color: "white" }}>
-                        <IconButton>
-                            <Badge badgeContent={cartLength} color="secondary">
-                                <ShoppingCartIcon style={{ color: "white" }} />
+                        <Link to="/cart" style={{ color: "white" }}>
+                            <IconButton>
+                                <Badge badgeContent={cartLength} color="secondary">
+                                    <ShoppingCartIcon style={{ color: "white" }} />
 
-                            </Badge>
-                        </IconButton>
+                                </Badge>
+                            </IconButton>
 
-                    </Link>
-                    <div className={classes.grow} />
-                    <div className={classes.sectionDesktop}>
-                        <IconButton aria-label="show 4 new mails" color="inherit">
-                            <Badge badgeContent={0} color="secondary">
-                                <MailIcon />
-                            </Badge>
-                        </IconButton>
-                        <IconButton aria-label="show 17 new notifications" color="inherit">
-                            <Badge badgeContent={0} color="secondary">
-                                <NotificationsIcon />
-                            </Badge>
-                        </IconButton>
-                        <IconButton
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
-                            color="inherit"
-                        >
-                            <AccountCircle />
-                        </IconButton>
-                    </div>
-                    <div className={classes.sectionMobile}>
-                        <IconButton
-                            aria-label="show more"
-                            aria-controls={mobileMenuId}
-                            aria-haspopup="true"
-                            onClick={handleMobileMenuOpen}
-                            color="inherit"
-                        >
-                            <MoreIcon />
-                        </IconButton>
-                    </div>
-                </Toolbar>
+                        </Link>
+                        <div className={classes.grow} />
+                        <div className={classes.sectionDesktop}>
+                            <IconButton aria-label="show 4 new mails" color="inherit">
+                                <Badge badgeContent={0} color="secondary">
+                                    <MailIcon />
+                                </Badge>
+                            </IconButton>
+                            <IconButton aria-label="show 17 new notifications" color="inherit">
+                                <Badge badgeContent={0} color="secondary">
+                                    <NotificationsIcon />
+                                </Badge>
+                            </IconButton>
+                            <IconButton
+                                edge="end"
+                                aria-label="account of current user"
+                                aria-controls={menuId}
+                                aria-haspopup="true"
+                                onClick={handleProfileMenuOpen}
+                                color="inherit"
+                            >
+                                <AccountCircle />
+                            </IconButton>
+                        </div>
+                        <div className={classes.sectionMobile}>
+                            <IconButton
+                                aria-label="show more"
+                                aria-controls={mobileMenuId}
+                                aria-haspopup="true"
+                                onClick={handleMobileMenuOpen}
+                                color="inherit"
+                            >
+                                <MoreIcon />
+                            </IconButton>
+                        </div>
+                    </Toolbar>
 
-            </AppBar>
-            {renderMobileMenu}
-            {renderMenu}
-        </div >
+                </AppBar>
+                {renderMobileMenu}
+                {renderMenu}
+            </div >
+        </Grid>
     );
 }
 

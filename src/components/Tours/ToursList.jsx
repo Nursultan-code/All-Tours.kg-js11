@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { TourContext } from '../Contexts/TourContext';
 import TourCard from './TourCard';
-import SideBar from './SideBar';
+
 import { Pagination } from '@material-ui/lab';
 import { getPage } from '../helpers/function';
 
@@ -43,9 +43,6 @@ const ToursList = () => {
 
     return (
         <>
-            <SideBar
-
-            />
             <Grid container spacing={3} justify="space-evenly" style={{ marginTop: '90px' }}>
                 {
                     tours ? (
