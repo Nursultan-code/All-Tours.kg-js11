@@ -95,7 +95,6 @@ const TourContextProvider = ({ children }) => {
         await axios.delete(`${API}/cart/${id}`)
         getTours(history)
     }
-
     const addTourInCart = (tour) => {
         let cart = JSON.parse(localStorage.getItem('cart'))
         if (!cart) {
@@ -167,6 +166,10 @@ const TourContextProvider = ({ children }) => {
         localStorage.setItem('cart', JSON.stringify(cart))
         getCart()
     }
+    const buy = (history) => {
+        localStorage.clear()
+        // history.push('/card')
+    }
     const checkTourInCart = (id) => {
         let cart = JSON.parse(localStorage.getItem('cart'))
         if (!cart) {
@@ -211,6 +214,7 @@ const TourContextProvider = ({ children }) => {
             getCartLength,
             deleteCart,
             getDetail,
+            buy,
 
 
         }}>
