@@ -39,13 +39,13 @@ const Edit = () => {
         setValues(edit)
     }, [edit])
 
-    console.log(edit, "     edit")
+    console.log(edit, "edit")
+
     const handleEditInp = (e) => {
         let obj = {
             ...values,
             [e.target.name]: e.target.value
         }
-
         setValues(obj)
     }
 

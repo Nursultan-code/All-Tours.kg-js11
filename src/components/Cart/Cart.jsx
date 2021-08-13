@@ -31,7 +31,7 @@ const useStyles = makeStyles({
 
 const Cart = ({ item }) => {
     const classes = useStyles()
-    const { cart, getCart, changeTourCount, deleteCart } = useContext(TourContext)
+    const { cart, getCart, changeTourCount, deleteCart, buy } = useContext(TourContext)
     const history = useHistory()
 
     useEffect(() => {
@@ -83,10 +83,12 @@ const Cart = ({ item }) => {
                         }
                     </TableRow>
                     <TableRow >
+
                         <Link to='/card'>
-                            <TableCell colSpan={3} align="right">
-                                <Button variant="contained" color="primary">BUY</Button>
-                            </TableCell></Link>
+                            <IconButton>
+                                <Button onClick={buy} variant="contained" color="primary">BUY</Button>
+                            </IconButton>
+                        </Link>
                     </TableRow>
                 </TableBody>
             </Table>

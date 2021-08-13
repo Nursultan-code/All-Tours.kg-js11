@@ -11,8 +11,8 @@ import Cart from './components/Cart/Cart';
 import Login from './components/Authorization/Login';
 import Registration from './components/Authorization/Registration';
 import AuthContextProvider from './components/Contexts/AuthContextProvider';
-import Card from './components/CreditCard/Card'
 import TourDetail from './components/Tours/TourDetail';
+import Card from './components/CreditCard/Card'
 import TourList2 from './components/TourList2/TourList2';
 
 
