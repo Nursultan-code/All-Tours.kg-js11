@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
         color: "white"
     },
     tabl3: {
+
         color: 'white'
     }
 }))

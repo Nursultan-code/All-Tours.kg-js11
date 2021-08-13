@@ -8,7 +8,7 @@ import Video1 from '../video/video1.webm'
 import { makeStyles } from '@material-ui/styles';
 import TourCard from '../Tours/TourCard';
 import ToursList from '../Tours/ToursList';
-import toursCarusel from './toursCarusel'
+
 import Footer from './Footer';
 import { Grid } from '@material-ui/core';
 
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'rgba(52, 52, 52, 0.4)',
 
         width: '1450px',
-        height: '547px',
+        height: '603px',
 
 
         position: 'relative',
